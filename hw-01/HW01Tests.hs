@@ -23,29 +23,59 @@ ex1Tests = [ Test "lastDigit test" testLastDigit
            ]
 
 -- Exercise 2 -----------------------------------------
+testToRevDigits :: (Integer, [Integer]) -> Bool
+testToRevDigits (n ,l) = toRevDigits n == l
 
 ex2Tests :: [Test]
-ex2Tests = []
+ex2Tests = [ Test "toRevDigits test" testToRevDigits
+             [(123, [3,2,1]), (1, [1]), (0, []), (-17, [])]
+           ]
 
 -- Exercise 3 -----------------------------------------
 
+testDoubleEveryOther :: ([Integer], [Integer]) -> Bool
+testDoubleEveryOther (l1, l2) = doubleEveryOther l1 == l2
+
 ex3Tests :: [Test]
-ex3Tests = []
+ex3Tests = [ Test "testDoubleEveryOther test" testDoubleEveryOther
+             [([4,9,5,5], [4,18,5,10]), ([0,0],[0,0]), ([1], [1]), ([], [])]
+           ]
 
 -- Exercise 4 -----------------------------------------
 
+testSumDigits :: ([Integer], Integer) -> Bool
+testSumDigits (l, n) = sumDigits l == n
 ex4Tests :: [Test]
-ex4Tests = []
+ex4Tests = [ Test "testSumDigits test" testSumDigits
+             [([], 0), ([10,5,18,4], 19), ([-17], 0)]
+           ]
 
 -- Exercise 5 -----------------------------------------
 
+testLuhn :: (Integer, Bool) -> Bool
+testLuhn (l, b) = luhn l == b
 ex5Tests :: [Test]
-ex5Tests = []
+ex5Tests = [ Test "testLuhn test" testLuhn
+             [(5491553626258969, True), (123, False), (6011111178081641, True)]
+           ]
 
 -- Exercise 6 -----------------------------------------
 
+testHanoi :: (Integer, Peg, Peg, Peg, [Move]) -> Bool
+testHanoi (n, src, dst, stg, mvs) = hanoi n src dst stg == mvs
+testHanoiLength :: (Integer, Peg, Peg, Peg, Int) -> Bool
+testHanoiLength (n, src, dst, stg, steps) = length (hanoi n src dst stg) == steps
+testHanoi4Length :: (Integer, Peg, Peg, Peg, Peg, Int) -> Bool
+testHanoi4Length (n, src, dst, stg1, stg2, steps) = length (hanoi4 n src dst stg1 stg2) == steps
+
 ex6Tests :: [Test]
-ex6Tests = []
+ex6Tests = [ Test "testHanoi test" testHanoi
+             [(2, "a", "b", "c", [("a", "c"), ("a", "b"), ("c", "b")])],
+             Test "testHanoiLength test" testHanoiLength
+             [(2, "a", "b", "c", 3), (15, "a", "b", "c", 32767)],
+             Test "testHanoi4Length test" testHanoi4Length
+             [(2, "a", "b", "c", "d", 3), (15, "a", "b", "c", "d", 129)]
+           ]
 
 -- All Tests ------------------------------------------
 

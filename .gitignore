@@ -4,3 +4,5 @@
 
 /instance/
 *.pdf
+*.hi
+*.o
