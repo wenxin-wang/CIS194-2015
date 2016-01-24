@@ -65,16 +65,16 @@ testHanoi :: (Integer, Peg, Peg, Peg, [Move]) -> Bool
 testHanoi (n, src, dst, stg, mvs) = hanoi n src dst stg == mvs
 testHanoiLength :: (Integer, Peg, Peg, Peg, Int) -> Bool
 testHanoiLength (n, src, dst, stg, steps) = length (hanoi n src dst stg) == steps
-testHanoi4Length :: (Integer, Peg, Peg, Peg, Peg, Int) -> Bool
-testHanoi4Length (n, src, dst, stg1, stg2, steps) = length (hanoi4 n src dst stg1 stg2) == steps
+testHanoinLength :: (Integer, Peg, Peg, [Peg], Int) -> Bool
+testHanoinLength (n, src, dst, stgs, steps) = length (hanoin n src dst stgs) == steps
 
 ex6Tests :: [Test]
 ex6Tests = [ Test "testHanoi test" testHanoi
              [(2, "a", "b", "c", [("a", "c"), ("a", "b"), ("c", "b")])],
              Test "testHanoiLength test" testHanoiLength
              [(2, "a", "b", "c", 3), (15, "a", "b", "c", 32767)],
-             Test "testHanoi4Length test" testHanoi4Length
-             [(2, "a", "b", "c", "d", 3), (15, "a", "b", "c", "d", 129)]
+             Test "testHanoinLength test" testHanoinLength
+             [(2, "a", "b", ["c", "d"], 3), (15, "a", "b", ["c", "d"], 129)]
            ]
 
 -- All Tests ------------------------------------------
