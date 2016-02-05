@@ -4,6 +4,11 @@
 
 /instance/
 *.pdf
+*.zip
+*.jpg
+*.json
+*.enc
+
 *.hi
 *.o
 main
