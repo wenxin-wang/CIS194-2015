@@ -213,10 +213,9 @@ succ_sum  Zero    m = Refl
 succ_sum (Succ n) m = case succ_sum n m of
                         Refl -> Refl
 
-{-
 double_even :: Forall n -> Even (n + n)
 double_even Zero = E_Zero
-double_even (Succ n) = E_Rec $ double_even n
+double_even (Succ n) = even_eq_imp (E_Rec $ double_even n) $ succ_sum n n
   where
-    Refl = succ_sum n n
--}
+    even_eq_imp :: Even n -> m == n -> Even m
+    even_eq_imp even Refl = even
